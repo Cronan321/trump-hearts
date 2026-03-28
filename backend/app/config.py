@@ -9,8 +9,15 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
 
-    # CORS
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:5173", "http://localhost:3000"]
+    # CORS — accepts JSON array or comma-separated string
+    ALLOWED_ORIGINS: str = "http://localhost:5173,http://localhost:3000"
+
+    def get_allowed_origins(self) -> list[str]:
+        raw = self.ALLOWED_ORIGINS.strip()
+        if raw.startswith("["):
+            import json
+            return json.loads(raw)
+        return [o.strip() for o in raw.split(",") if o.strip()]
 
 
 settings = Settings()
