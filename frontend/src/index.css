@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-marble-dark text-gold font-body;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-gold text-marble-dark font-display font-bold px-6 py-2 rounded
+           hover:bg-gold-light transition-colors shadow-gold;
+  }
+
+  .card-gold-border {
+    @apply border border-gold rounded shadow-gold;
+  }
+}
+
+@layer utilities {
+  .bg-marble-texture {
+    background-image: url('/game-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
